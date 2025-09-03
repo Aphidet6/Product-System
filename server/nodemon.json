@@ -1,0 +1,10 @@
+{
+  "watch": ["./"],
+  "ignore": [
+    "products.json",
+    "../client/**",
+    "node_modules/**"
+  ],
+  "ext": "js,json",
+  "delay": "1000"
+}
