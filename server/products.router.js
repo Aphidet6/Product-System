@@ -3,10 +3,13 @@ const router = express.Router();
 const { nanoid } = require('nanoid');
 const { db } = require('./products.db');
 const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
 
 // configure multer storage
 const uploadDir = path.join(__dirname, 'uploads');
+// ensure upload directory exists
+try { fs.mkdirSync(uploadDir, { recursive: true }); } catch (e) { /* ignore */ }
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {

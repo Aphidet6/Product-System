@@ -2,24 +2,24 @@
   "products": [
     {
       "id": "p1",
-      "name": "Brass Pocket Watch",
-      "number": "ANT-000",
+      "name": "UploadedTest",
+      "number": "UP-123",
       "description": "A 19th-century brass pocket watch once carried by a railway conductor; precision-crafted escapement and engraved case tell the story of early industrial timekeeping.",
-      "image": "http://localhost:4000/uploads/1756923185410-g1gzrh.jpg"
+      "image": "/uploads/1756965210499-4mm9wg.png"
     },
     {
       "id": "p3",
       "name": "Porcelain Tea Set",
       "number": "ANT-003",
       "description": "A hand-painted porcelain tea set from the late 1800s, featuring floral motifs; tea drinking rituals became fashionable across classes during the era.",
-      "image": "https://via.placeholder.com/300x200?text=Porcelain+Tea+Set"
+      "image": "/uploads/1756965228351-r3iny4.png"
     },
     {
       "id": "p4",
       "name": "Antique Sextant",
       "number": "ANT-004",
       "description": "A brass sextant used for navigation at sea during the Age of Sail; instruments like this enabled long voyages and global trade expansion.",
-      "image": "https://via.placeholder.com/300x200?text=Antique+Sextant"
+      "image": "/uploads/1756965243461-7bnw65.png"
     },
     {
       "id": "p5",
@@ -48,13 +48,6 @@
       "number": "ANT-009",
       "description": "An early phonograph cylinder used to play recorded sound at the dawn of recorded music; such cylinders preserve the voices and songs of their time.",
       "image": "https://via.placeholder.com/300x200?text=Phonograph+Cylinder"
-    },
-    {
-      "id": "p10",
-      "name": "Hand-blown Glass Bottle",
-      "number": "ANT-010",
-      "description": "A 19th-century hand-blown bottle with pontil mark; bottles were commonly reused and offer insight into early glassmaking techniques.",
-      "image": "https://via.placeholder.com/300x200?text=Glass+Bottle"
     }
   ]
 }

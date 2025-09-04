@@ -39,6 +39,9 @@ export default function ProductEdit() {
           nav(`/products/${created.id}`)
         }
       }
+    } catch (err: any) {
+      console.error('Save failed', err)
+      alert(err?.message || 'Save failed')
     } finally { setLoading(false) }
   }
 
