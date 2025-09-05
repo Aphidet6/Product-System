@@ -1,18 +1,13 @@
 {
   "products": [
     {
-      "id": "p1",
-      "name": "UploadedTest",
-      "number": "UP-123",
-      "description": "A 19th-century brass pocket watch once carried by a railway conductor; precision-crafted escapement and engraved case tell the story of early industrial timekeeping.",
-      "image": "/uploads/1756965210499-4mm9wg.png"
-    },
-    {
       "id": "p3",
       "name": "Porcelain Tea Set",
-      "number": "ANT-003",
+      "number": "TSM-002",
       "description": "A hand-painted porcelain tea set from the late 1800s, featuring floral motifs; tea drinking rituals became fashionable across classes during the era.",
-      "image": "/uploads/1756965228351-r3iny4.png"
+      "image": "/uploads/1756965228351-r3iny4.png",
+      "status": "Available",
+      "title": "UPDATED_BY_ADMIN"
     },
     {
       "id": "p4",
@@ -26,35 +21,53 @@
       "name": "Edwardian Portrait Frame",
       "number": "ANT-005",
       "description": "A gilded Edwardian frame that once held a family portrait; frames of this style reflect late-Victorian decorative tastes and photography's rise.",
-      "image": "/uploads/1756923227874-a9wbp0.jpg"
+      "image": "/uploads/1756972803701-1t3xsi.jpg",
+      "status": "Sold out"
     },
     {
       "id": "p6",
       "name": "Cast-Iron Boot Jack",
       "number": "ANT-006",
       "description": "A utilitarian cast-iron boot jack from a rural 19th-century household; simple tools like this reveal everyday life before mass convenience goods.",
-      "image": "https://via.placeholder.com/300x200?text=Boot+Jack"
+      "image": "/uploads/1756982816732-tr3zf8.png",
+      "status": "Available",
+      "price": null
     },
     {
       "id": "p8",
       "name": "Leather-bound Atlas",
       "number": "ANT-008",
       "description": "A late-19th-century leather-bound atlas containing hand-drawn maps; atlases like this capture the contemporary understanding of geography and empire.",
-      "image": "https://via.placeholder.com/300x200?text=Leather+Atlas"
+      "image": "/uploads/1756982844835-y0rlm7.png",
+      "status": "Available",
+      "price": null
     },
     {
       "id": "p9",
       "name": "Phonograph Cylinder",
       "number": "ANT-009",
       "description": "An early phonograph cylinder used to play recorded sound at the dawn of recorded music; such cylinders preserve the voices and songs of their time.",
-      "image": "https://via.placeholder.com/300x200?text=Phonograph+Cylinder"
+      "image": "/uploads/1756982860526-ss3r1b.png",
+      "status": "Available",
+      "price": null
     },
     {
       "id": "BZ9-_sklLWLvJJhzTXHxn",
       "name": "วัชระ",
       "number": "0001",
       "description": "กหน่ำเ่กเหน่กหเ่กหเสื",
-      "image": "/uploads/1756967862198-s57not.jpg"
+      "image": "/uploads/1756967862198-s57not.jpg",
+      "status": "Available",
+      "price": 30000
+    },
+    {
+      "id": "7pB4hC1KP6StjyttC4C03",
+      "name": "Test",
+      "number": "TSM-555",
+      "description": "This is a test for description ",
+      "image": "/uploads/1756973204318-gc93mj.png",
+      "status": "Sold out",
+      "price": 500000
     }
   ]
 }
