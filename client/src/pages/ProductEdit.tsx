@@ -111,7 +111,7 @@ export default function ProductEdit() {
           {numberError && <div className="text-sm text-red-600 mt-1">{numberError}</div>}
         </div>
         <input type="file" accept="image/*" onChange={e => setFile(e.target.files ? e.target.files[0] : null)} className="w-full" disabled={!isAdmin} />
-        <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} placeholder="Description" className="w-full p-2 border rounded" disabled={!isAdmin} />
+        <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} placeholder="Description" className="w-full p-2 border rounded" />
         <div>
           <label className="block text-sm font-medium mb-1">Status</label>
           <select value={form.status} onChange={e => setForm({ ...form, status: e.target.value })} className="p-2 border rounded">
@@ -125,7 +125,9 @@ export default function ProductEdit() {
         </div>
         <div className="flex gap-2">
           <button onClick={onSave} disabled={loading || Boolean(numberError)} className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">Save</button>
-          {id && <button onClick={onDelete} disabled={loading || !isAdmin} className="px-4 py-2 bg-red-600 text-white rounded">Delete</button>}
+          {id && isAdmin && (
+            <button onClick={onDelete} disabled={loading} className="px-4 py-2 bg-red-600 text-white rounded">Delete</button>
+          )}
           <button onClick={() => nav(-1)} className="px-4 py-2 bg-gray-200 rounded">Cancel</button>
         </div>
       </div>
