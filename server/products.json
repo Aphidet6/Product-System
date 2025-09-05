@@ -2,12 +2,13 @@
   "products": [
     {
       "id": "p3",
-      "name": "Porcelain Tea Set",
+      "name": "Porcelain Tea Set hahaha",
       "number": "TSM-002",
       "description": "A hand-painted porcelain tea set from the late 1800s, featuring floral motifs; tea drinking rituals became fashionable across classes during the era.",
       "image": "/uploads/1756965228351-r3iny4.png",
       "status": "Available",
-      "title": "UPDATED_BY_ADMIN"
+      "title": "UPDATED_BY_ADMIN",
+      "price": 100000
     },
     {
       "id": "p4",
@@ -22,16 +23,17 @@
       "number": "ANT-005",
       "description": "A gilded Edwardian frame that once held a family portrait; frames of this style reflect late-Victorian decorative tastes and photography's rise.",
       "image": "/uploads/1756972803701-1t3xsi.jpg",
-      "status": "Sold out"
+      "status": "Sold out",
+      "price": 5000
     },
     {
       "id": "p6",
       "name": "Cast-Iron Boot Jack",
-      "number": "ANT-006",
+      "number": "ANT-99",
       "description": "A utilitarian cast-iron boot jack from a rural 19th-century household; simple tools like this reveal everyday life before mass convenience goods.",
       "image": "/uploads/1756982816732-tr3zf8.png",
       "status": "Available",
-      "price": null
+      "price": 9000
     },
     {
       "id": "p8",
@@ -40,34 +42,34 @@
       "description": "A late-19th-century leather-bound atlas containing hand-drawn maps; atlases like this capture the contemporary understanding of geography and empire.",
       "image": "/uploads/1756982844835-y0rlm7.png",
       "status": "Available",
-      "price": null
-    },
-    {
-      "id": "p9",
-      "name": "Phonograph Cylinder",
-      "number": "ANT-009",
-      "description": "An early phonograph cylinder used to play recorded sound at the dawn of recorded music; such cylinders preserve the voices and songs of their time.",
-      "image": "/uploads/1756982860526-ss3r1b.png",
-      "status": "Available",
-      "price": null
+      "price": 100000
     },
     {
       "id": "BZ9-_sklLWLvJJhzTXHxn",
       "name": "วัชระ",
       "number": "0001",
-      "description": "กหน่ำเ่กเหน่กหเ่กหเสื",
+      "description": "นี่คือข้าวนาสวนกลับฟื้นแล้วโดยบริษัท",
       "image": "/uploads/1756967862198-s57not.jpg",
-      "status": "Available",
-      "price": 30000
+      "status": "Sold out",
+      "price": 50000
     },
     {
-      "id": "7pB4hC1KP6StjyttC4C03",
-      "name": "Test",
-      "number": "TSM-555",
-      "description": "This is a test for description ",
-      "image": "/uploads/1756973204318-gc93mj.png",
-      "status": "Sold out",
-      "price": 500000
+      "id": "lvgwPseQ9jqKLu8NrdGrt",
+      "name": "Something ",
+      "number": "TSM-001",
+      "description": "This is the moon in miro you will be able to get it to you will you be home late tonight and gloves for the moon.",
+      "image": "/uploads/1757058210287-ylfkk4.jpg",
+      "status": "Available",
+      "price": 90000
+    },
+    {
+      "id": "-C3gSwM59KTnSKTz0SzJM",
+      "name": "ภาพวาดพระพุทธเจ้า",
+      "number": "TSM-003",
+      "description": "ภาพวาดพระพุทธเจ้า สมัยรัตนโกสินทร์ ช่วงอายุราวพุทธศตวรรษที่ 24-25 กรอบไม้กระแหนะลงรักปิดทอง งานฝีมือบรมครูช่างไทยในสมัยรัตนโกสินทร์เป็นผู้รังสรรค์ขึ้น ซึ่งนับว่าเป็นของที่มีมูลค่าสูง ในปัจจุบันนั้นจะหาชมชิ้นงานที่สมบูรณ์เท่านี้ได้ยากมาก",
+      "image": "/uploads/1757059004539-9m7g6l.jpg",
+      "status": "Available",
+      "price": 20000
     }
   ]
 }

@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 const { authMiddleware, requireRole } = require('./auth');
+const { logAction } = require('./logger');
 
 // list + search
 router.get('/', (req, res) => {
@@ -64,6 +65,14 @@ router.post('/', authMiddleware, requireRole('Admin'), upload.single('image'), a
   db.data = db.data || { products: [] };
   db.data.products.push(newP);
   await db.write();
+  // log admin create
+  try {
+    const user = req.user && req.user.username ? req.user.username : 'unknown'
+    const ip = req.ip || req.connection && req.connection.remoteAddress || req.socket && req.socket.remoteAddress || 'unknown'
+  const msg = { user, ip, id: newP.id, name: newP.name, number: newP.number, price: newP.price }
+  console.log(`[${new Date().toISOString()}] ADMIN CREATE by ${user} (${ip}) - id=${newP.id} name="${newP.name}" number="${newP.number}" price=${newP.price}`)
+  logAction('ADMIN_CREATE', msg)
+  } catch (e) {}
   res.status(201).json(newP);
 });
 
@@ -86,6 +95,14 @@ router.put('/:id', authMiddleware, upload.single('image'), async (req, res) => {
     const updated = { ...db.data.products[idx], ...allowed };
     db.data.products[idx] = updated;
     await db.write();
+    // log user status change
+    try {
+      const user = req.user && req.user.username ? req.user.username : 'unknown'
+      const ip = req.ip || req.connection && req.connection.remoteAddress || req.socket && req.socket.remoteAddress || 'unknown'
+    const msg = { user, ip, id: updated.id, number: updated.number, status: updated.status }
+    console.log(`[${new Date().toISOString()}] USER STATUS_CHANGE by ${user} (${ip}) - id=${updated.id} number="${updated.number}" status="${updated.status}"`)
+    logAction('USER_STATUS_CHANGE', msg)
+    } catch (e) {}
     return res.json(db.data.products[idx]);
   }
 
@@ -97,7 +114,9 @@ router.put('/:id', authMiddleware, upload.single('image'), async (req, res) => {
     const conflict = db.data.products.find(p => p.id !== req.params.id && (p.number || '').toString().trim().toLowerCase() === numberNorm);
     if (conflict) return res.status(409).json({ error: 'product number must be unique' });
   }
-  const updated = { ...db.data.products[idx], ...req.body };
+  // capture original before applying changes
+  const before = Object.assign({}, db.data.products[idx])
+  const updated = { ...before, ...req.body };
   if (req.body.price !== undefined) {
     updated.price = req.body.price !== '' ? Number(req.body.price) : null
   }
@@ -106,13 +125,44 @@ router.put('/:id', authMiddleware, upload.single('image'), async (req, res) => {
   }
   db.data.products[idx] = updated;
   await db.write();
+  // log admin update with changed fields (include before/after values)
+  try {
+    const user = req.user && req.user.username ? req.user.username : 'unknown'
+    const ip = req.ip || req.connection && req.connection.remoteAddress || req.socket && req.socket.remoteAddress || 'unknown'
+    const changed = []
+    const keys = new Set([...(Object.keys(req.body || {})), ...(req.file ? ['image'] : [])])
+    keys.forEach(k => {
+      const b = before[k] === undefined ? null : before[k]
+      const a = updated[k] === undefined ? null : updated[k]
+      // compare stringified values to catch type changes
+      if (String(b) !== String(a)) changed.push({ field: k, before: b, after: a })
+    })
+    const msg = { user, ip, id: updated.id, number: updated.number, changed }
+    console.log(`[${new Date().toISOString()}] ADMIN UPDATE by ${user} (${ip}) - id=${updated.id} number="${updated.number}" changed=${JSON.stringify(changed)}`)
+    logAction('ADMIN_UPDATE', msg)
+  } catch (e) {}
   res.json(db.data.products[idx]);
 });
 
 router.delete('/:id', authMiddleware, requireRole('Admin'), async (req, res) => {
   db.data = db.data || { products: [] };
+  const toDelete = db.data.products.find(p => p.id === req.params.id)
   db.data.products = db.data.products.filter(p => p.id !== req.params.id);
   await db.write();
+  // log admin delete
+  try {
+    const user = req.user && req.user.username ? req.user.username : 'unknown'
+    const ip = req.ip || req.connection && req.connection.remoteAddress || req.socket && req.socket.remoteAddress || 'unknown'
+    if (toDelete) {
+      const msg = { user, ip, id: toDelete.id, number: toDelete.number, name: toDelete.name }
+      console.log(`[${new Date().toISOString()}] ADMIN DELETE by ${user} (${ip}) - id=${toDelete.id} number="${toDelete.number}" name="${toDelete.name}"`)
+      logAction('ADMIN_DELETE', msg)
+    } else {
+      const msg = { user, ip, id: req.params.id, notFound: true }
+      console.log(`[${new Date().toISOString()}] ADMIN DELETE by ${user} (${ip}) - id=${req.params.id} (not found)`)
+      logAction('ADMIN_DELETE', msg)
+    }
+  } catch (e) {}
   res.status(204).end();
 });
 

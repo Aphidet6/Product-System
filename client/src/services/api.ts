@@ -79,6 +79,12 @@ export async function loginUser(username: string, password: string) {
   return handleResponse(res)
 }
 
+export async function logoutUser() {
+  const res = await fetch(`${API}/auth/logout`, { method: 'POST', headers: authHeaders() })
+  // ignore response body; return true if ok
+  return res.ok
+}
+
 // Resolve an image path returned by the API to a full URL the browser can fetch.
 export function resolveImageUrl(img?: string) {
   if (!img) return ''

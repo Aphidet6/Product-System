@@ -105,14 +105,13 @@ export default function ProductEdit() {
     <div className="bg-white p-6 rounded shadow max-w-2xl">
       <h2 className="text-xl font-semibold mb-4">{id ? 'Edit Product' : 'Create Product'}</h2>
       <div className="space-y-3">
-  <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Name" className="w-full p-2 border rounded" disabled={!isAdmin} />
+        <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Name" className="w-full p-2 border rounded" disabled={!isAdmin} />
         <div>
           <input value={form.number} onChange={e => setForm({ ...form, number: e.target.value })} placeholder="Number" className="w-full p-2 border rounded" disabled={!isAdmin} />
           {numberError && <div className="text-sm text-red-600 mt-1">{numberError}</div>}
         </div>
-    <input value={form.image} onChange={e => setForm({ ...form, image: e.target.value })} placeholder="Image URL" className="w-full p-2 border rounded" disabled={!isAdmin} />
-  <input type="file" accept="image/*" onChange={e => setFile(e.target.files ? e.target.files[0] : null)} className="w-full" disabled={!isAdmin} />
-    <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} placeholder="Description" className="w-full p-2 border rounded" disabled={!isAdmin} />
+        <input type="file" accept="image/*" onChange={e => setFile(e.target.files ? e.target.files[0] : null)} className="w-full" disabled={!isAdmin} />
+        <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} placeholder="Description" className="w-full p-2 border rounded" disabled={!isAdmin} />
         <div>
           <label className="block text-sm font-medium mb-1">Status</label>
           <select value={form.status} onChange={e => setForm({ ...form, status: e.target.value })} className="p-2 border rounded">

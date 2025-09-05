@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\Office\\Documents\\WEB\\Product-System\\server\\logs\\.694a1882122e993c435ffd9fb1f7fdaee2532fbb-audit.json",
+    "files": [
+        {
+            "date": 1757062870047,
+            "name": "C:\\Users\\Office\\Documents\\WEB\\Product-System\\server\\logs\\actions-2025-09-05.jsonl",
+            "hash": "e0f7b81c5a5a2ff7aae595f53d91a0ce1f00b0c3b9ef5563d0a85a8664fa093e"
+        }
+    ],
+    "hashType": "sha256"
+}
