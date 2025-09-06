@@ -1,4 +1,27 @@
 [
-  { "username": "admin", "password": "adminpass", "role": "Admin" },
-  { "username": "user", "password": "userpass", "role": "User" }
+  {
+    "username": "admin",
+    "passwordHash": "$2a$10$Po4yjsQRaxAs8tJEm7bXNOzWKHZ7POWZ40mS3Xg9CGUXogbGSSfIK",
+    "role": "Admin"
+  },
+  {
+    "username": "Earth",
+    "passwordHash": "$2a$10$MxMLTR3jgTDsTzSNdjLXa.n0wreN9GjiRaIcxIlc7a7l.sI65uX9S",
+    "role": "MasterAdmin"
+  },
+  {
+    "username": "zhong",
+    "passwordHash": "$2a$10$kY/z/rNgUWqefDZxkLlbaONPKvQH8qbgNWZwB5s1EmUNTEhzwdH4.",
+    "role": "MasterAdmin"
+  },
+  {
+    "username": "aya",
+    "passwordHash": "$2a$10$PexL4vt/JjTdXOXnFZ6J9./CQijcYKT9TkPhG9K7jbDfzpe4LpwHm",
+    "role": "Admin"
+  },
+  {
+    "username": "team",
+    "passwordHash": "$2a$10$nPGCkTpiB7Z/x07DmASR1u8bXzSopf8DS6q75FvaXIA9eVPmAuEOu",
+    "role": "User"
+  }
 ]

@@ -38,6 +38,9 @@ ready.then(async () => {
 	// Mount router after DB is initialized
 	app.use('/api/auth', auth.router);
 	app.use('/api/products', productsRouter);
+	// users management (master-only for changes)
+	const usersRouter = require('./users.router')
+	app.use('/api/users', usersRouter)
 
 		// Start server on IPv4 any and log the actual address/port
 		const server = app.listen(port, '0.0.0.0', () => {

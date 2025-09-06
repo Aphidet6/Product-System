@@ -71,6 +71,7 @@ export default function Home() {
       ) : (
         <ProductList products={results} />
       )}
+      
     </div>
   )
 }

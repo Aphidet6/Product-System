@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const { authMiddleware, requireRole } = require('./auth');
 const { logAction } = require('./logger');
+const { z } = require('zod')
 
 // list + search
 router.get('/', (req, res) => {
@@ -46,9 +47,12 @@ router.get('/:id', (req, res) => {
   res.json(p);
 });
 
+const createProductSchema = z.object({ name: z.string().min(1), number: z.string().min(1), description: z.optional(z.string()), status: z.optional(z.enum(['Available','Sold out'])), price: z.optional(z.preprocess(v => v === '' ? undefined : Number(v), z.number().nonnegative())) })
+
 router.post('/', authMiddleware, requireRole('Admin'), upload.single('image'), async (req, res) => {
-  const { name, number, description, status, price } = req.body;
-  if (!name || !number) return res.status(400).json({ error: 'name and number required' });
+  const parsed = createProductSchema.safeParse(req.body || {})
+  if (!parsed.success) return res.status(400).json({ error: 'invalid body', details: parsed.error.format() })
+  const { name, number, description, status, price } = parsed.data
   // enforce unique product number (case-insensitive)
   const products = (db.data && db.data.products) ? db.data.products : [];
   const numberNorm = number.toString().trim().toLowerCase();
@@ -61,7 +65,7 @@ router.post('/', authMiddleware, requireRole('Admin'), upload.single('image'), a
   } else if (req.body.image) {
     imageUrl = req.body.image;
   }
-  const newP = { id: nanoid(), name, number, description: description || '', image: imageUrl, status: status || 'Available', price: price ? Number(price) : null };
+  const newP = { id: nanoid(), name, number, description: description || '', image: imageUrl, status: status || 'Available', price: price === undefined ? null : Number(price) };
   db.data = db.data || { products: [] };
   db.data.products.push(newP);
   await db.write();
@@ -76,7 +80,12 @@ router.post('/', authMiddleware, requireRole('Admin'), upload.single('image'), a
   res.status(201).json(newP);
 });
 
+const updateProductSchema = z.object({ name: z.optional(z.string().min(1)), number: z.optional(z.string().min(1)), description: z.optional(z.string()), status: z.optional(z.enum(['Available','Sold out'])), price: z.optional(z.preprocess(v => v === '' ? undefined : Number(v), z.number().nonnegative())) })
+
 router.put('/:id', authMiddleware, upload.single('image'), async (req, res) => {
+  const parsed = updateProductSchema.safeParse(req.body || {})
+  if (!parsed.success) return res.status(400).json({ error: 'invalid body', details: parsed.error.format() })
+  req.body = parsed.data
   db.data = db.data || { products: [] };
   const idx = db.data.products.findIndex(p => p.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Not found' });

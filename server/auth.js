@@ -3,9 +3,10 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs')
 
 const usersFile = path.join(__dirname, 'users.json');
-const SECRET = 'dev-secret-change-me';
+const SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
 const { logAction } = require('./logger')
 
 function loadUsers() {
@@ -15,8 +16,14 @@ function loadUsers() {
 router.post('/login', (req, res) => {
   const { username, password } = req.body || {}
   const users = loadUsers()
-  const u = users.find(x => x.username === username && x.password === password)
-  if (!u) {
+  const u = users.find(x => x.username === username)
+  // verify password: prefer passwordHash, fallback to legacy plaintext (will be migrated)
+  let ok = false
+  if (u) {
+    if (u.passwordHash) ok = bcrypt.compareSync(password || '', u.passwordHash)
+    else ok = u.password === password
+  }
+  if (!u || !ok) {
     try {
       const ip = req.headers['x-forwarded-for'] || req.ip || (req.connection && req.connection.remoteAddress) || ''
       const userAgent = req.get('user-agent') || ''
@@ -24,7 +31,7 @@ router.post('/login', (req, res) => {
   } catch (e) { }
   // also print to server terminal for quick visibility
   try { console.log(`[LOGIN_FAILURE] ${new Date().toISOString()} username=${username || '-'} ip=${req.ip || ''}`) } catch (e) {}
-  return res.status(401).json({ error: 'invalid credentials' })
+    return res.status(401).json({ error: 'invalid credentials' })
   }
   
   // log successful login (avoid logging passwords)
